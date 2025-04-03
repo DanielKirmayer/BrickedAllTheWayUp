@@ -18,7 +18,12 @@ public class DrawPanel extends JPanel implements MouseListener {
         super.paintComponent(g);
         int x = 10;
         int y = 10;
-        bricksLayout = bricks.getBrickLayout();
+        for (int i = 0; i < 40; i++) {
+            bricks.doOneBrick();
+        }
+        bricksLayout = bricks.getRealBrickLayout();
+
+
         for (int[] ints : bricksLayout) {
             for (int j = 0; j < bricksLayout[0].length - 1; j++) {
 
@@ -34,6 +39,8 @@ public class DrawPanel extends JPanel implements MouseListener {
             }
             x = 10;
             y += 25;
+
+
         }
     }
 
@@ -42,7 +49,7 @@ public class DrawPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        bricks.doOneBrick();
+
     }
 
     @Override

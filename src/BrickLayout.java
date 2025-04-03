@@ -95,4 +95,15 @@ public class BrickLayout {
     public int[][] getBrickLayout() {
         return brickLayout;
     }
+    public int[][] getRealBrickLayout(){
+
+        int [][] finalLayout = new int[30][40];
+
+        for (int i = 1; i < brickLayout.length; i++) {
+            finalLayout[0] = brickLayout[i];
+
+        }
+
+        return finalLayout;
+    }
 }

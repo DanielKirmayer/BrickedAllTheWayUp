@@ -2,11 +2,13 @@ public class Brick {
     private int start;
     private int end;
     private int height;
+    private int currentHeight;
 
     public Brick(int start, int end) {
         this.start = start;
         this.end = end;
         this.height = 0;
+        this.currentHeight = 0;
     }
 
     public int getStart() {
@@ -35,5 +37,9 @@ public class Brick {
 
     public int getHeight() {
         return height;
+    }
+
+    public int getCurrentHeight(){
+        return currentHeight;
     }
 }
