@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 public class BrickLayout {
 
+    public ArrayList<Brick> getBricks() {
+        return bricks;
+    }
+
     private ArrayList<Brick> bricks;
     private int[][] brickLayout;
     private int cols;
@@ -94,16 +98,5 @@ public class BrickLayout {
 
     public int[][] getBrickLayout() {
         return brickLayout;
-    }
-    public int[][] getRealBrickLayout(){
-
-        int [][] finalLayout = new int[30][40];
-
-        for (int i = 1; i < brickLayout.length; i++) {
-            finalLayout[0] = brickLayout[i];
-
-        }
-
-        return finalLayout;
     }
 }

@@ -7,21 +7,33 @@ import java.util.Arrays;
 
 public class DrawPanel extends JPanel implements MouseListener {
     private int[][] bricksLayout = new int[30][40];
+
     BrickLayout bricks = new BrickLayout("src/bricks", 40, true);
 
 
     public DrawPanel() {
         this.addMouseListener(this);
+        int blah = bricks.getBricks().size();
+        for (int i = 0; i < blah; i++) {
+            bricks.doOneBrick();
+        }
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         int x = 10;
         int y = 10;
-        for (int i = 0; i < 40; i++) {
-            bricks.doOneBrick();
-        }
-        bricksLayout = bricks.getRealBrickLayout();
+
+        int[][] layout = bricks.getBrickLayout();
+
+
+
+
+
+
+
+        layout[0] = bricksLayout[bricksLayout.length-1];
+
 
 
         for (int[] ints : bricksLayout) {
@@ -49,7 +61,7 @@ public class DrawPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        bricks.doOneBrick();
     }
 
     @Override
