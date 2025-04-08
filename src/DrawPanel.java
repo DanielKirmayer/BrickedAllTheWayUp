@@ -1,22 +1,16 @@
 import java.awt.*;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
-import javax.swing.JPanel;
+import java.awt.event.*;
+import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class DrawPanel extends JPanel implements MouseListener {
+public class DrawPanel extends JPanel implements MouseListener, ActionListener {
     private int[][] bricksLayout = new int[30][40];
-
+    private Timer timer;
     BrickLayout bricks = new BrickLayout("src/bricks", 40, true);
 
-
     public DrawPanel() {
-        this.addMouseListener(this);
-        int blah = bricks.getBricks().size();
-        for (int i = 0; i < blah; i++) {
-            bricks.doOneBrick();
-        }
+        timer = new Timer(50, this);
+        timer.start();
     }
 
     protected void paintComponent(Graphics g) {
@@ -24,23 +18,12 @@ public class DrawPanel extends JPanel implements MouseListener {
         int x = 10;
         int y = 10;
 
-        int[][] layout = bricks.getBrickLayout();
+        bricksLayout = bricks.getBrickLayout();
 
-
-
-
-
-
-
-        layout[0] = bricksLayout[bricksLayout.length-1];
-
-
-
-        for (int[] ints : bricksLayout) {
-            for (int j = 0; j < bricksLayout[0].length - 1; j++) {
-
+        for (int i = 0; i < bricksLayout.length; i++) {
+            for (int j = 0; j < bricksLayout[0].length; j++) {
                 g.drawRect(x, y, 20, 20);
-                if (ints[j] == 1) {
+                if (bricksLayout[i][j] == 1) {
                     g.setColor(new Color(165, 42, 42));
                 } else {
                     g.setColor(Color.BLACK);
@@ -51,17 +34,12 @@ public class DrawPanel extends JPanel implements MouseListener {
             }
             x = 10;
             y += 25;
-
-
         }
     }
 
-
-
-
     @Override
     public void mouseClicked(MouseEvent e) {
-        bricks.doOneBrick();
+
     }
 
     @Override
@@ -81,5 +59,13 @@ public class DrawPanel extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (!bricks.getBricks().isEmpty()) {
+            bricks.doOneBrick();
+            repaint();
+        }
     }
 }
